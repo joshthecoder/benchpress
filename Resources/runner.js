@@ -27,9 +27,12 @@ function Runner() {
   }
 
   var finalScore = this.finalScore = Ti.UI.createLabel({
-    text: '',
-    height: 'auto', width: 'auto',
-    left: 5
+    text: 'Final Score:',
+    height: 75,
+    top: 10,
+    left: 5, right: 5,
+    font: {fontSize: 18, fontWeight: 'bold'},
+    backgroundColor: 'white'
   });
   view.add(finalScore);
 }
@@ -42,7 +45,7 @@ Runner.prototype.runSuites = function() {
   for (var i = 0; i < suites.length; i++) {
     suites[i].view.clear();
   }
-  this.finalScore.text = '';
+  this.finalScore.text = 'Final Score:';
   this.suiteView = suites[0].view;
   this.suiteIndex = 0;
 

@@ -14,10 +14,12 @@ function BenchmarkSuiteView(suite) {
   }));
 
   var statusLabel = this.statusLabel = Ti.UI.createLabel({
-    text: "",
+    text: '',
     height: 'auto',
     width: 'auto',
-    right: 15
+    right: 15,
+    font: {fontSize: 14, fontWeight: 'bold'},
+    color: 'black'
   });
   view.add(statusLabel);
 }
