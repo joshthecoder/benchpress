@@ -13,7 +13,7 @@ load('splay.js');
 load('navier-stokes.js');
 //load('pdfjs.js');
 //load('mandreel.js');
-load('gbemu.js');
+//load('gbemu.js');
 load('code-load.js');
 load('box2d.js');
 
