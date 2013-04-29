@@ -1,4 +1,4 @@
-// Copyright 2008 the V8 project authors. All rights reserved.
+// Copyright 2012 the V8 project authors. All rights reserved.
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
@@ -35,11 +35,12 @@
 // arguments are functions that will be invoked before and after
 // running the benchmark, but the running time of these functions will
 // not be accounted for in the benchmark score.
-function Benchmark(name, run, setup, tearDown) {
+function Benchmark(name, run, setup, tearDown, minIterations) {
   this.name = name;
   this.run = run;
   this.Setup = setup ? setup : function() { };
   this.TearDown = tearDown ? tearDown : function() { };
+  this.minIterations = minIterations ? minIterations : 32;
 }
 
 
@@ -78,8 +79,12 @@ BenchmarkSuite.suites = [];
 // Scores are not comparable across versions. Bump the version if
 // you're making changes that will affect that scores, e.g. if you add
 // a new benchmark or change an existing one.
-BenchmarkSuite.version = '6';
+BenchmarkSuite.version = '8';
 
+// Override the alert function to throw an exception instead.
+alert = function(s) {
+  throw "Alert called with argument: " + s;
+};
 
 // To make the benchmark results predictable, we replace Math.random
 // with a 100% deterministic alternative.
@@ -220,7 +225,7 @@ BenchmarkSuite.prototype.RunSingleBenchmark = function(benchmark, data) {
   } else {
     Measure(data);
     // If we've run too few iterations, we continue for another second.
-    if (data.runs < 32) return data;
+    if (data.runs < benchmark.minIterations) return data;
     var usec = (data.elapsed * 1000) / data.runs;
     this.NotifyStep(new BenchmarkResult(benchmark, usec));
     return null;

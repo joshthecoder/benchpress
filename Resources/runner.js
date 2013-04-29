@@ -1,13 +1,21 @@
-Ti.include(
-  'tests/base.js',
-  'tests/richards.js',
-  'tests/deltablue.js',
-  'tests/crypto.js',
-  'tests/raytrace.js',
-  'tests/earley-boyer.js',
-  'tests/regexp.js',
-  'tests/splay.js'
-);
+function load(test) {
+  Ti.include('tests/' + test);
+}
+
+load('base.js');
+load('richards.js');
+load('deltablue.js');
+load('crypto.js');
+load('raytrace.js');
+load('earley-boyer.js');
+load('regexp.js');
+load('splay.js');
+load('navier-stokes.js');
+//load('pdfjs.js');
+//load('mandreel.js');
+load('gbemu.js');
+load('code-load.js');
+load('box2d.js');
 
 var BenchmarkSuiteView = require('benchmarkSuite').BenchmarkSuiteView;
 
